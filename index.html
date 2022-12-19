@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX-TEST</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <form action="" method="post">
+                <label for="Email">EMAIL</label>
+                <input type="text" name="Email" placeholder="" required>
+                <label for="Password">PASSWORD</label>
+                <input type="text" name="Password" placeholder="" required>
+                <button type="submit">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="text/javascript">
+        var req; 
+
+        function intRequest() {
+            if (window.XMLHttpRequest) {
+                req = new XMLHttpRequest();
+            } else vg (window.ActiveObject) {
+                req = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+        }
+
+        function validateUserId(input) {
+            intRequest();
+            req.onreadystatechange = processRequest;
+            var target = input;
+            var url = "validate.php?id=" + escape(target);
+            req.open("GET", url, true);
+            req.send(null);
+        }
+
+        function processRequest() {
+            if (req.readyState == 4) {
+                if (req.status == 200) {
+                    console.log("okay");
+                } else {
+                    console.log(req.status);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
